@@ -176,7 +176,7 @@ function ContactUs({ img, theme, toggleMode }) {
         </div>
       </div>
       <div style={{ height: '400px', width: '100%', overflow: 'hidden' }}>
-        <LeafletMapComponent />
+        <LeafletMapComponent theme={theme} />
       </div>
     </>
   );

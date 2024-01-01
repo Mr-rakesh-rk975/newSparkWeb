@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-const LeafletMapComponent = () => {
+const LeafletMapComponent = ({theme}) => {
   const officeLocation = {
     address: "Tara Mata House, near Central Bank, Kasumpti, Shimla, Himachal Pradesh 171009, India",
     lat: 31.1006,
@@ -13,6 +13,10 @@ const LeafletMapComponent = () => {
   const position = [officeLocation.lat, officeLocation.lng];
 
   return (
+
+<>
+
+
     <MapContainer center={position} zoom={15} style={{ height: '400px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -21,13 +25,16 @@ const LeafletMapComponent = () => {
       <Marker position={position} icon={L.divIcon({ className: 'leaflet-div-icon', html: '<div style="background-color: red; color: white; text-align: center; padding: 5px;">Spark Web Solutions</div>' })}>
         <Popup>
           <div>
-            <strong>Spark Web Solutions</strong>
+            <h1 style={{ color: theme === 'light' ? 'black ' : 'red' }}>Spark Web Solutions</h1>
             <br />
             {officeLocation.address}
           </div>
         </Popup>
       </Marker>
     </MapContainer>
+    
+</>
+
   );
 };
 

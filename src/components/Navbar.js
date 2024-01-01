@@ -8,7 +8,7 @@ import { NavLink, Link } from "react-router-dom"
 
 
 
-export default function Navbar({theme}) {
+export default function Navbar({ theme }) {
 
   const [componentVisible, setComponentVisible] = useState(false);
 
@@ -147,8 +147,28 @@ export default function Navbar({theme}) {
                     </NavLink>
 
                   </li>
+                  <li className="nav-item">
 
 
+                    <NavLink
+                      className={`nav-link`}
+                      aria-current="page" // CareerServices
+                      to="/career-services"
+
+                      onClick={handleLinkClick}
+                      style={({ isActive }) => {
+                        return {
+                          color: isActive
+                            ? theme === 'light'
+                              ? '#f24b74'
+                              : '#fff'
+                            : '',
+                        };
+                      }}
+                    >
+                      Career Services
+                    </NavLink>
+                  </li>
                 </ul>
               </div>
             </div>

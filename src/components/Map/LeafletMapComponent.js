@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+
 const LeafletMapComponent = ({theme}) => {
   const officeLocation = {
     address: "Tara Mata House, near Central Bank, Kasumpti, Shimla, Himachal Pradesh 171009, India",
@@ -12,6 +13,9 @@ const LeafletMapComponent = ({theme}) => {
 
   const position = [officeLocation.lat, officeLocation.lng];
 
+
+   
+  
   return (
 
 <>

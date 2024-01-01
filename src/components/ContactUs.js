@@ -9,8 +9,7 @@ import LeafletMapComponent from './Map/LeafletMapComponent';
 
 function ContactUs({ img, theme, toggleMode }) {
   
-  const location = { lat: 31.07473, lng: 77.1831 }; // Replace with your desired coordinates
-
+ 
 
   const [countryOptions, setCountryOptions] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -177,7 +176,7 @@ function ContactUs({ img, theme, toggleMode }) {
         </div>
       </div>
       <div style={{ height: '400px', width: '100%', overflow: 'hidden' }}>
-        <LeafletMapComponent lat={location.lat} lng={location.lng} />
+        <LeafletMapComponent />
       </div>
     </>
   );

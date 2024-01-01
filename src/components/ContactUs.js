@@ -3,11 +3,13 @@ import MySong from './MySong';
 import '../components/css-files/ContactUs.css';
 import Select from 'react-select';
 import axios from 'axios';
-
+import LeafletMapComponent from './Map/LeafletMapComponent';
 
 
 
 function ContactUs({ img, theme, toggleMode }) {
+  
+  const location = { lat: 31.07473, lng: 77.1831 }; // Replace with your desired coordinates
 
 
   const [countryOptions, setCountryOptions] = useState([]);
@@ -173,6 +175,9 @@ function ContactUs({ img, theme, toggleMode }) {
             </form>
           )}
         </div>
+      </div>
+      <div style={{ height: '400px', width: '100%', overflow: 'hidden' }}>
+        <LeafletMapComponent lat={location.lat} lng={location.lng} />
       </div>
     </>
   );

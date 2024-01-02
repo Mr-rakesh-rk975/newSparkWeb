@@ -1,8 +1,16 @@
 /* CareerServices.css */
 
+.career-services-page{
+  padding:  0px 10px;
+}
+.career-services-inner-wrapper{
+  max-width: 1240px;
+  margin: auto;
+}
+
 .career-services-container {
   position: relative;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0px auto 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -13,7 +21,12 @@
     transform: translateY(20px);
     animation: fade-in-up 0.5s forwards;
   }
-  
+ .career-services-page  h1{
+    font-size: 4vw;
+    font-family: 'basement';
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
   @keyframes fade-in-up {
     from {
       opacity: 0;

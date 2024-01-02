@@ -52,6 +52,8 @@ const CareerServices = ({ img, theme, toggleMode }) => {
 
   return (
     <>
+    <div className="career-services-page">
+    <div className="career-services-inner-wrapper">
       <div className='btn-outer'>
         <div className='btn-inner'>
           <div className='both-botton'>
@@ -176,6 +178,8 @@ const CareerServices = ({ img, theme, toggleMode }) => {
           </div>
           <button type="submit">Apply Now</button>
         </form>
+      </div>
+      </div>
       </div>
     </>
   );

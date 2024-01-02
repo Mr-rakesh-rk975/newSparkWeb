@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
 
-
+.leaflet-bottom.leaflet-right {
+  display: none;
+}
 
 @keyframes fadeIn{
   from{
@@ -10,6 +12,9 @@
     opacity:1;
   }
 }
+
+
+
 
 /* .contactUs-page-outer{
   height: 100vh;

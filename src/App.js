@@ -1,3 +1,5 @@
+
+import React from 'react';
 import './components/style.css'
  import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,7 +17,7 @@ import moon from './components/images/moon.png'
 import Home from './components/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
- 
+
  
  
     
@@ -89,9 +91,6 @@ function App() {
          <Route path='/our-services' element={<OurServices toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='*' element={<ErrorPage toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='/career-services' element={<CareerServices toggleMode={toggleMode} img={img} theme={theme}/>}/>
-      
-      
-        
          </Routes>
          </BrowserRouter> 
          

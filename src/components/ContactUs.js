@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import MySong from './MySong';
 import '../components/css-files/ContactUs.css';
 import Select from 'react-select';
 import axios from 'axios';
-import LeafletMapComponent from './Map/LeafletMapComponent';
+const LeafletMapComponent = lazy(() => import('./Map/LeafletMapComponent'));
+
 
 
 
@@ -176,7 +177,9 @@ function ContactUs({ img, theme, toggleMode }) {
         </div>
       </div>
       <div style={{ height: '400px', width: '100%', overflow: 'hidden' }}>
+      <Suspense fallback={<div>Loading map...</div>}>
         <LeafletMapComponent theme={theme} />
+      </Suspense>
       </div>
     </>
   );

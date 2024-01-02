@@ -1,0 +1,6 @@
+.leaflet-div-icon{
+    background: url('../images/SparkWebSol.Location.png')  !important;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}

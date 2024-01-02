@@ -1,6 +1,7 @@
 /* CareerServices.css */
 
 .career-services-container {
+  position: relative;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -64,5 +65,8 @@
     cursor: pointer;
   }
   
-  /* Add more styles as needed */
+
+
+
+  
   

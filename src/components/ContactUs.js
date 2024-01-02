@@ -93,6 +93,7 @@ function ContactUs({ img, theme, toggleMode }) {
 
   return (
     <>
+    <div className="contact-outer">
       <div className='btn-outer'>
         <div className='btn-inner'>
           <div className='both-botton'>
@@ -103,6 +104,7 @@ function ContactUs({ img, theme, toggleMode }) {
           </div>
         </div>
       </div>
+
       <div className="contactUs-page-outer">
         <div className="contactUs-page-inner">
 
@@ -175,11 +177,13 @@ function ContactUs({ img, theme, toggleMode }) {
             </form>
           )}
         </div>
+        
       </div>
-      <div style={{ height: '400px', width: '100%', overflow: 'hidden' }}>
+      <div style={{ height: '400px', width: '100%', overflow: 'hidden',zIndex: '-1'}}>
       <Suspense fallback={<div>Loading map...</div>}>
         <LeafletMapComponent theme={theme} />
       </Suspense>
+      </div>
       </div>
     </>
   );

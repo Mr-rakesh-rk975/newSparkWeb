@@ -7,7 +7,7 @@ import ContactUs from './components/ContactUs';
 import OurServices from './components/OurServices';
 import AboutUs from './components/AboutUs';
 import CareerServices from './components/services-inner-pages/CareerServices';
-
+import LeafletMapComponent from './components/Map/LeafletMapComponent';
  
  import sun from './components/images/sun.png'
 import moon from './components/images/moon.png'
@@ -91,6 +91,7 @@ function App() {
          <Route path='/our-services' element={<OurServices toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='*' element={<ErrorPage toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='/career-services' element={<CareerServices toggleMode={toggleMode} img={img} theme={theme}/>}/>
+         <Route path='/our-location' element={<LeafletMapComponent toggleMode={toggleMode} img={img} theme={theme}/>}/>
          </Routes>
          </BrowserRouter> 
          

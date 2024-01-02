@@ -1,8 +1,8 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import MySong from './MySong';
 import '../components/css-files/ContactUs.css';
-import Select from 'react-select';
-import axios from 'axios';
+// import Select from 'react-select';
+// import axios from 'axios';
 const LeafletMapComponent = lazy(() => import('./Map/LeafletMapComponent'));
 
 
@@ -12,35 +12,35 @@ function ContactUs({ img, theme, toggleMode }) {
   
  
 
-  const [countryOptions, setCountryOptions] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  // const [countryOptions, setCountryOptions] = useState([]);
+  // const [selectedCountry, setSelectedCountry] = useState(null);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchCountries = async () => {
+  //   const fetchCountries = async () => {
 
-      try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        const data = response.data;
+  //     try {
+  //       const response = await axios.get('https://restcountries.com/v3.1/all');
+  //       const data = response.data;
 
-        const options = data.map((country) => ({
-          value: country.name.common,
-          label: (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <span>{country.flags  && <img src={country.flags.svg} alt={country.name.common} width={20} height={15} />}</span>
-              <span style={{ marginLeft: '5px' }} >{country.name.common}</span>
-            </div>
-          ),
-        }));
+  //       const options = data.map((country) => ({
+  //         value: country.name.common,
+  //         label: (
+  //           <div style={{ display: 'flex', alignItems: 'center' }}>
+  //             <span>{country.flags  && <img src={country.flags.svg} alt={country.name.common} width={20} height={15} />}</span>
+  //             <span style={{ marginLeft: '5px' }} >{country.name.common}</span>
+  //           </div>
+  //         ),
+  //       }));
 
-        setCountryOptions(options);
-      } catch (error) {
-        console.error('Error fetching countries:', error);
-      }
-    };
+  //       setCountryOptions(options);
+  //     } catch (error) {
+  //       console.error('Error fetching countries:', error);
+  //     }
+  //   };
 
-    fetchCountries();
-  }, []);
+  //   fetchCountries();
+  // }, []);
 
 
   const SentMessageBox = () => {
@@ -136,7 +136,7 @@ function ContactUs({ img, theme, toggleMode }) {
                   onChange={handleChange}
                   required
                 />
-                <span className="telephone-section">
+                {/* <span className="telephone-section">
                   <Select
                     value={countryOptions.find((option) => option.value === selectedCountry)}
                     onChange={(selectedOption) => setSelectedCountry(selectedOption.value)}
@@ -146,7 +146,7 @@ function ContactUs({ img, theme, toggleMode }) {
                     placeholder="Select Country"
                     inputProps={{ autoComplete: 'off' }} 
                     aria-label='none'
-                  />
+                  /> */}
                 
                   <input
                     style={borderBottom}
@@ -159,7 +159,7 @@ function ContactUs({ img, theme, toggleMode }) {
                     autoComplete="nope"
                     required
                   />
-                </span>
+                {/* </span> */}
                 <textarea
                   style={borderBottom}
                   placeholder="Your Message"

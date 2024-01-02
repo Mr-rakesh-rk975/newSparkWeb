@@ -9,6 +9,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    contactNumber: Number,
     applicationType: '',
     selectedField: '',
     experience: '',
@@ -40,6 +41,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
     setFormData({
       name: '',
       email: '',
+      contactNumber: '',
       applicationType: '',
       selectedField: '',
       experience: '',
@@ -88,6 +90,19 @@ const CareerServices = ({ img, theme, toggleMode }) => {
               required
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="applicationType">Contact Number:</label>
+          <input
+                    
+                    type="number"
+                    value={formData.contactNumber}
+                    placeholder="Telephone Number"
+                    name="contactNumber"
+                    onChange={handleChange}
+                    autoComplete="nope"
+                    required
+                  />
+                  </div>
           <div className="form-group">
             <label htmlFor="applicationType">Application Type:</label>
             <select

@@ -9,7 +9,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    contactNumber: Number,
+    phone: '',
     applicationType: '',
     selectedField: '',
     experience: '',
@@ -41,7 +41,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
     setFormData({
       name: '',
       email: '',
-      contactNumber: '',
+      phone: '',
       applicationType: '',
       selectedField: '',
       experience: '',
@@ -97,7 +97,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
           <input
                     
                     type="number"
-                    value={formData.contactNumber}
+                    value={formData.phone}
                     placeholder="Telephone Number"
                     name="contactNumber"
                     onChange={handleChange}

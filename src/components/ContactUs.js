@@ -1,8 +1,7 @@
 import React, { useState, lazy, Suspense } from 'react';
 import MySong from './MySong';
 import '../components/css-files/ContactUs.css';
-// import Select from 'react-select';
-// import axios from 'axios';
+
 const LeafletMapComponent = lazy(() => import('./Map/LeafletMapComponent'));
 
 
@@ -12,35 +11,7 @@ function ContactUs({ img, theme, toggleMode }) {
   
  
 
-  // const [countryOptions, setCountryOptions] = useState([]);
-  // const [selectedCountry, setSelectedCountry] = useState(null);
 
-  // useEffect(() => {
-
-  //   const fetchCountries = async () => {
-
-  //     try {
-  //       const response = await axios.get('https://restcountries.com/v3.1/all');
-  //       const data = response.data;
-
-  //       const options = data.map((country) => ({
-  //         value: country.name.common,
-  //         label: (
-  //           <div style={{ display: 'flex', alignItems: 'center' }}>
-  //             <span>{country.flags  && <img src={country.flags.svg} alt={country.name.common} width={20} height={15} />}</span>
-  //             <span style={{ marginLeft: '5px' }} >{country.name.common}</span>
-  //           </div>
-  //         ),
-  //       }));
-
-  //       setCountryOptions(options);
-  //     } catch (error) {
-  //       console.error('Error fetching countries:', error);
-  //     }
-  //   };
-
-  //   fetchCountries();
-  // }, []);
 
 
   const SentMessageBox = () => {
@@ -54,7 +25,7 @@ function ContactUs({ img, theme, toggleMode }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    contactNumber: '',
+    phone: '',
     message: '',
     hasSent: false,
 
@@ -67,27 +38,42 @@ function ContactUs({ img, theme, toggleMode }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    
+    try {
+
+      const data = await fetch('http://localhost:9300/user', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      
+
+      const result = await data.json();
+      console.log(`Data was sent successfully:--- ${JSON.stringify(result)}`)
+    } catch (error) {
+      console.error('data was not sent!')
+    }
+    
     // Clear the form fields
     setFormData(prevState => ({
       ...prevState,
       name: '',
       email: '',
-      contactNumber: '',
+      phone: '',
       message: '',
       hasSent: true,
     }));
-
-
-
-
     setTimeout(() => {
       setFormData(prevState => ({ ...prevState, hasSent: false }));
     }, 2000);
   };
 
-  const { name, email, contactNumber, message, hasSent } = formData;
+  const { name, email, phone, message, hasSent } = formData;
 
   const borderBottom = ({ borderBottom: theme === 'light' ? '2px solid rgb(242, 75, 116) ' : "2px solid rgb(30, 124, 192)" })
 
@@ -114,7 +100,7 @@ function ContactUs({ img, theme, toggleMode }) {
           {hasSent ? (
             <SentMessageBox />
           ) : (
-            <form className="contact-form-container" onSubmit={handleSubmit} autoComplete='off'>
+            <form className="contact-form-container" onSubmit={handleSubmit}>
               <span className='form-input-wrapper'>
                 <input
                   style={borderBottom}
@@ -136,30 +122,18 @@ function ContactUs({ img, theme, toggleMode }) {
                   onChange={handleChange}
                   required
                 />
-                {/* <span className="telephone-section">
-                  <Select
-                    value={countryOptions.find((option) => option.value === selectedCountry)}
-                    onChange={(selectedOption) => setSelectedCountry(selectedOption.value)}
-                    options={countryOptions}
-                    className="country-dropdown"
-                    isSearchable
-                    placeholder="Select Country"
-                    inputProps={{ autoComplete: 'off' }} 
-                    aria-label='none'
-                  /> */}
-                
+              
                   <input
                     style={borderBottom}
                     type="number"
-                    value={contactNumber}
+                    value={phone}
                     placeholder="Telephone Number"
                     className="contact-input"
-                    name="contactNumber"
+                    name="phone"
                     onChange={handleChange}
-                    autoComplete="nope"
+                    autoComplete="tel"
                     required
                   />
-                {/* </span> */}
                 <textarea
                   style={borderBottom}
                   placeholder="Your Message"
@@ -167,7 +141,7 @@ function ContactUs({ img, theme, toggleMode }) {
                   value={message}
                   className="contact-input"
                   onChange={handleChange}
-
+                  autoComplete="txt"
                   required
                 />
               </span>

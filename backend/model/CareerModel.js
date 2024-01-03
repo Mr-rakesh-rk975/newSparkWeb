@@ -1,25 +1,55 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-let userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        
+const careerSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  applicationType: {
+    type: String,
+    required: true,
+  },
+  selectedField: {
+    type: String,
+    required: true,
+  },
+  experience: {
+    type: String,  // Update the type according to your requirements
+    required: true,
+  },
+  resume: {
+    fileName: {
+      type: String,
+      required: true,
     },
-    email: {
-        type: String,
-        
-         
+    filePath: {
+      type: String,
+      required: true,
     },
-    phone: {
-        type: Number,
-         
-         
+  },
+  certificate: {
+    fileName: {
+      type: String,
+      required: true,
     },
-    message: {
-        type: String,
-    }
-    
-})
+    filePath: {
+      type: String,
+      required: true,
+    },
+  },
+});
 
-module.exports = mongoose.model('attendies', userSchema)
- 
+
+
+
+
+
+module.exports = mongoose.model('careerdatas', careerSchema);

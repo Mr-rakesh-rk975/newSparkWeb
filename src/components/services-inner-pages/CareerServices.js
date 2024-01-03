@@ -5,6 +5,7 @@ import '../css-files/CareerServices.css';
 import MySong from '../MySong';
 
 
+
 const CareerServices = ({ img, theme, toggleMode }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -25,18 +26,54 @@ const CareerServices = ({ img, theme, toggleMode }) => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+
+  const handleCertificateFile = (e) => {
+    const certificateFile = e.target.files[0];
     setFormData((prevData) => ({
       ...prevData,
-      resume: file,
+      certificate: certificateFile,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleResumeFile = (e) => {
+    const resumeFile = e.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      resume: resumeFile,
+    }));
+  };
+
+  
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform your form submission logic here
-    console.log('Form submitted:', formData);
+  
+    try {
+      const form = new FormData();
+      form.append('name', formData.name);
+      form.append('email', formData.email);
+      form.append('phone', formData.phone);
+      form.append('applicationType', formData.applicationType);
+      form.append('selectedField', formData.selectedField);
+  
+      if (formData.applicationType === 'job') {
+        form.append('experience', formData.experience);
+        form.append('certificate', formData.certificate);
+      }
+  
+      form.append('resume', formData.resume);
+  
+      const data = await fetch('http://localhost:9300/career', {
+        method: 'POST',
+        body: form,
+      });
+  
+      const result = await data.json();
+      console.log(`Data was sent successfully:--- ${JSON.stringify(result)}`);
+    } catch (error) {
+      console.error('data was not sent!');
+    }
+  
     // Reset the form after submission
     setFormData({
       name: '',
@@ -45,10 +82,11 @@ const CareerServices = ({ img, theme, toggleMode }) => {
       applicationType: '',
       selectedField: '',
       experience: '',
-      resume: '',
-      certificate: '',
+      resume: null,
+      certificate: null,
     });
   };
+  
 
   return (
     <>
@@ -99,9 +137,9 @@ const CareerServices = ({ img, theme, toggleMode }) => {
                     type="number"
                     value={formData.phone}
                     placeholder="Telephone Number"
-                    name="contactNumber"
+                    name="phone"
                     onChange={handleChange}
-                    autoComplete="nope"
+                    autoComplete="tel"
                     required
                   />
                   </div>
@@ -159,7 +197,9 @@ const CareerServices = ({ img, theme, toggleMode }) => {
                 type="file"
                 id="certificate"
                 name="certificate"
-                onChange={(e) => handleFileChange(e, 'certificate')}
+              
+               onChange={(e) => handleCertificateFile(e, 'certificate')}
+
                 accept=".pdf, .doc, .docx"
                 required
               />
@@ -171,7 +211,8 @@ const CareerServices = ({ img, theme, toggleMode }) => {
               type="file"
               id="resume"
               name="resume"
-              onChange={handleFileChange}
+            
+             onChange={(e) => handleResumeFile(e, 'resume')}
               accept=".pdf, .doc, .docx"
               required
             />

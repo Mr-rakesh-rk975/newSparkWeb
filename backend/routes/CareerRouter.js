@@ -1,9 +1,10 @@
-const express=require('express')
-const router=express.Router()
-const userInfo=require('../controller/careerController')
+// CareerRouter.js
+const express = require('express');
+const router = express.Router();
+const careerData = require('../controller/careerController');
 
-router.post('/',userInfo.postUser)
-router.get('/', userInfo.getUser )
+router.post('/', careerData.postCareer)
 
-exports.router=router
+exports.router = router;
+
 

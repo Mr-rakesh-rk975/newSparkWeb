@@ -44,7 +44,7 @@ function ContactUs({ img, theme, toggleMode }) {
     
     try {
 
-      const data = await fetch('http://localhost:9300/user', {
+      const data = await fetch('http://localhost:9200/user', {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {

@@ -111,3 +111,18 @@ object-fit: cover;
     display: flex;
     justify-content: flex-end;
 }
+
+/* @media (max-width: 500px) {
+  .services-tab-wraper {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    column-gap: 30px;
+    
+}
+  
+  .services-ul-wrapper ul li {
+    padding: 15px;
+    background: rgb(242, 75, 116);
+    position: relative;
+}
+} */

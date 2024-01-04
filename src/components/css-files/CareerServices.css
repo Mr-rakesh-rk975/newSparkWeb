@@ -79,7 +79,18 @@
   }
   
 
-
+@media (max-width: 425px) {
+  .career-services-container {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.39),  rgba(0, 0, 255, 0.397)); 
+    backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+    padding: 20px; /* Optional: Add padding for content spacing */
+  }
+  
+  .career-services-container button{
+      background: linear-gradient(to right,#007BFF,#F6F718) !important;
+  }
+}
 
   
   

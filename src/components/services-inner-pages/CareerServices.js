@@ -91,31 +91,32 @@ const CareerServices = ({ img, theme, toggleMode }) => {
 
 //     // Clear file input values
     // document.getElementById('name','email','phone','applicationType','selectedField','experience').value = '';
-    const resumeInput = document.getElementById('resume');
-    const certificateInput = document.getElementById('certificate');
-  
-    if (resumeInput) {
-      resumeInput.value = '';
-    }
-  
-    if (certificateInput) {
-      certificateInput.value = '';
-    }
-    
-
-    // Reset other form fields
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      applicationType: '',
-      selectedField: '',
-      experience: '',
-      resume: '',
-      certificate: '',
-    });
+   
     setTimeout(() => {
       setLoading(false); 
+      const resumeInput = document.getElementById('resume');
+      const certificateInput = document.getElementById('certificate');
+    
+      if (resumeInput) {
+        resumeInput.value = '';
+      }
+    
+      if (certificateInput) {
+        certificateInput.value = '';
+      }
+      
+  
+      // Reset other form fields
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        applicationType: '',
+        selectedField: '',
+        experience: '',
+        resume: '',
+        certificate: '',
+      });
       toast.success(
         <div className="register-success-toast">
           Apllication Submitted Successfully

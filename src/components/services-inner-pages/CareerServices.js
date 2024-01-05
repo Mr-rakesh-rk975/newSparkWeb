@@ -6,6 +6,7 @@ import MySong from '../MySong';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LiveCodeEditor from '../codeEditor/LiveCodeEditor';
 
 
 const CareerServices = ({ img, theme, toggleMode }) => {
@@ -274,7 +275,12 @@ const CareerServices = ({ img, theme, toggleMode }) => {
               </button>
             </form>
           </div>
+          
+          
         </div>
+        <div className="code-pannel-outer">
+          <LiveCodeEditor/>
+          </div>
       </div>
     </>
   );

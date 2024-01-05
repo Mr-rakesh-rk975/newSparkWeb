@@ -21,10 +21,6 @@ const careerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  experience: {
-    type: String,  // Update the type according to your requirements
-    required: true,
-  },
   resume: {
     fileName: {
       type: String,
@@ -35,16 +31,7 @@ const careerSchema = new mongoose.Schema({
       required: true,
     },
   },
-  certificate: {
-    fileName: {
-      type: String,
-      required: true,
-    },
-    filePath: {
-      type: String,
-      required: true,
-    },
-  },
+  
 });
 
 
@@ -52,4 +39,4 @@ const careerSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('jobs', careerSchema);
+module.exports = mongoose.model('Internships', careerSchema);

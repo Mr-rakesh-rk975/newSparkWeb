@@ -1,5 +1,6 @@
 const express = require('express');
 const careerModel = require('../model/CareerModel.js');
+const CareerModelTwo = require('../model/CareerModelTwo.js')
 const path = require('path');
 const multer = require('multer');
 
@@ -31,34 +32,55 @@ exports.postCareer = async (req, resp) => {
       // Destructuring request body
       const { name, email, phone, applicationType, selectedField, experience } = req.body;
 
-      // Check if 'resume' and 'certificate' properties exist in 'req.files'
-      if (!req.files || !req.files['resume'] || !req.files['certificate']) {
-        return resp.status(400).send('Both resume and certificate files are required.');
+      // Declare newUser variables outside the conditional blocks
+      let InternShipData, JobData;
+
+      if (applicationType === 'internship') {
+        InternShipData = new CareerModelTwo({
+          name,
+          email,
+          phone,
+          applicationType,
+          selectedField,
+          resume: {
+            fileName: req.files['resume'][0].originalname,
+            filePath: req.files['resume'][0].path,
+          },
+        });
       }
 
-      // Create a new careerModel instance with data
-      const newUser = new careerModel({
-        name,
-        email,
-        phone,
-        applicationType,
-        selectedField,
-        experience,
-        resume: {
-          fileName: req.files['resume'][0].originalname,
-          filePath: req.files['resume'][0].path,
-        },
-        certificate: {
-          fileName: req.files['certificate'][0].originalname,
-          filePath: req.files['certificate'][0].path,
-        },
-      });
+      if (applicationType === 'job') {
+        JobData = new careerModel({
+          name,
+          email,
+          phone,
+          applicationType,
+          selectedField,
+          experience,
+          resume: {
+            fileName: req.files['resume'][0].originalname,
+            filePath: req.files['resume'][0].path,
+          },
+          certificate: {
+            fileName: req.files['certificate'][0].originalname,
+            filePath: req.files['certificate'][0].path,
+          },
+        });
+      }
+
+     
 
       // Save to the database
-      await newUser.save();
+      if (InternShipData) {
+        await InternShipData.save();
+      }
+
+      if (JobData) {
+        await JobData.save();
+      }
 
       // Send a success response
-      resp.status(201).send(newUser);
+      resp.status(201).send({ InternShipData, JobData });
     });
   } catch (error) {
     console.error(error);

@@ -3,10 +3,17 @@ import '../css-files/CareerServices.css';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faMapMarker, faFileAlt, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import MySong from '../MySong';
-
+import ClipLoader from 'react-spinners/ClipLoader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const CareerServices = ({ img, theme, toggleMode }) => {
+
+  const [loading, setLoading] = useState(false); // Added state for loader
+
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,45 +51,58 @@ const CareerServices = ({ img, theme, toggleMode }) => {
   };
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+ setLoading(true);
     const form = new FormData();
-    if (formData.applicationType === 'internship'){ form.append('name', formData.name);
+    form.append('name', formData.name);
     form.append('email', formData.email);
     form.append('phone', formData.phone);
     form.append('applicationType', formData.applicationType);
     form.append('selectedField', formData.selectedField);
-    form.append('resume', formData.resume);}
-   
+    form.append('resume', formData.resume);
+
+    if (formData.applicationType === 'internship') {
+      form.delete('experience');
+      form.delete('certificate');
+    }
+
     if (formData.applicationType === 'job') {
       form.append('experience', formData.experience);
       form.append('certificate', formData.certificate);
     }
-  
-    
-  
+
     const data = await fetch('http://localhost:9200/career', {
       method: 'POST',
       credentials: 'same-origin',
       body: form,
     });
-  
-    const textResponse = await data.text(); // Get the raw response text
-  
+
     try {
-      const result = JSON.parse(textResponse);
-      console.log(`Data was sent successfully:--- ${JSON.stringify(result)}`);
+      if (!data.ok) {
+        throw new Error(`HTTP error! Status: ${data.status}`);
+      }
+
+      const result = await data.json();
+      console.log(`Data was sent successfully: ${JSON.stringify(result)}`);
     } catch (error) {
-      console.error('Error parsing JSON response:', error);
-      console.log('Raw response:', textResponse); // Log the raw response
+      console.error('Error:', error);
+    }
+
+//     // Clear file input values
+    // document.getElementById('name','email','phone','applicationType','selectedField','experience').value = '';
+    const resumeInput = document.getElementById('resume');
+    const certificateInput = document.getElementById('certificate');
+  
+    if (resumeInput) {
+      resumeInput.value = '';
     }
   
-    // Clear file input values
-    document.getElementById('resume').value = '';
-    document.getElementById('certificate').value = '';
-  
+    if (certificateInput) {
+      certificateInput.value = '';
+    }
+    
+
     // Reset other form fields
     setFormData({
       name: '',
@@ -94,12 +114,23 @@ const CareerServices = ({ img, theme, toggleMode }) => {
       resume: '',
       certificate: '',
     });
+    setTimeout(() => {
+      setLoading(false); 
+      toast.success(
+        <div className="register-success-toast">
+          Apllication Submitted Successfully
+        </div>
+        )
+    }, 4000);
   };
-  
+
+
+
 
 
   return (
     <>
+          <ToastContainer />
       <div className="career-services-page">
         <div className="career-services-inner-wrapper">
           <div className='btn-outer'>
@@ -147,6 +178,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
                 <input
 
                   type="number"
+                  id='phone'
                   value={formData.phone}
                   placeholder="Contact Number"
                   name="phone"
@@ -209,7 +241,7 @@ const CareerServices = ({ img, theme, toggleMode }) => {
                     type="file"
                     id="certificate"
                     name="certificate"
-             
+
                     onChange={(e) => handleCertificateFile(e, 'certificate')}
 
                     accept=".pdf, .doc, .docx"
@@ -223,13 +255,22 @@ const CareerServices = ({ img, theme, toggleMode }) => {
                   type="file"
                   id="resume"
                   name="resume"
-                 
+
                   onChange={(e) => handleResumeFile(e, 'resume')}
                   accept=".pdf, .doc, .docx"
                   required
                 />
               </div>
-              <button type="submit">Apply Now</button>
+              <button type="submit">
+              {loading ? (
+                <>
+                  <ClipLoader color="#ffffff" loading size={20} />
+                  &nbsp; Loading...
+                </>
+              ) : (
+                'Apply Now'
+              )}
+              </button>
             </form>
           </div>
         </div>

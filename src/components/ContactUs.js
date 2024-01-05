@@ -1,6 +1,7 @@
 import React, { useState, lazy, Suspense } from 'react';
 import MySong from './MySong';
 import '../components/css-files/ContactUs.css';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const LeafletMapComponent = lazy(() => import('./Map/LeafletMapComponent'));
 
@@ -8,7 +9,8 @@ const LeafletMapComponent = lazy(() => import('./Map/LeafletMapComponent'));
 
 
 function ContactUs({ img, theme, toggleMode }) {
-  
+  const [loading, setLoading] = useState(false); // Added state for loader
+
  
 
 
@@ -37,10 +39,11 @@ function ContactUs({ img, theme, toggleMode }) {
       [e.target.name]: e.target.value,
     });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setLoading(true);
     
     try {
 
@@ -70,7 +73,9 @@ function ContactUs({ img, theme, toggleMode }) {
     }));
     setTimeout(() => {
       setFormData(prevState => ({ ...prevState, hasSent: false }));
-    }, 2000);
+      setLoading(false); 
+
+    }, 4000);
   };
 
   const { name, email, phone, message, hasSent } = formData;
@@ -146,7 +151,15 @@ function ContactUs({ img, theme, toggleMode }) {
                 />
               </span>
               <button style={{ color: theme === 'light' ? '#fff' : '#000', background: theme === 'light' ? 'rgb(242, 75, 116) ' : "rgb(30, 124, 192)" }} className="button submit-button" value="Submit">
-                Send!
+               
+                {loading ? (
+                <>
+                  <ClipLoader color="#ffffff" loading size={20} />
+                  &nbsp; Loading...
+                </>
+              ) : (
+                ' Send!'
+              )}
               </button>
             </form>
           )}

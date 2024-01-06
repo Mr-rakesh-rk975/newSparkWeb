@@ -17,7 +17,7 @@ export function Model(props) {
 
   useEffect(()=>{
     actions[names[0]].reset().fadeIn().play();
-  },[])
+  },[actions,names])
    
   return (
     <group ref={group} {...props} dispose={null}>

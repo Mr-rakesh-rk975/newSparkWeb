@@ -50,7 +50,7 @@ const LiveCodeEditor = () => {
         <div style={{ flex: 5, marginLeft: 20 }}>
           <iframe
             title="Live Preview"
-            srcDoc={`<html><head><style></style></head><body>${code}</body><script></script></html>`}
+            srcDoc={`<html><head><style></style></head><body>${code}<script></script></body></html>`}
             style={{ width: '100%', height: '100%', border: '1px solid #ccc' }}
           />
         </div>

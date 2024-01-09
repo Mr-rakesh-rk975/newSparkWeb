@@ -109,7 +109,7 @@ ul {
 }
 
 #features .box-item:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 255, 0.1), 0 5px 15px rgba(0, 0, 255, 0.05);
+    box-shadow: 0 10px 22px 10px rgba(27, 38, 49, .1)
 }
 
 #features .box-item:hover h4 {

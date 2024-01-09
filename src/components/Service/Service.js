@@ -4,6 +4,7 @@ import ServiceRingHover from './ServiceRingHover';
 import '../Service/Service.css';
 import MySong from '../MySong';
 import ServiceFeatures from './ServiceFeatures';
+import ServiceOffer from './ServiceOffer';
 
 function Service({ img, theme, toggleMode }) {
     return (
@@ -25,6 +26,7 @@ function Service({ img, theme, toggleMode }) {
             <ServiceRingHover/>
             </div>
             <ServiceFeatures/>
+            <ServiceOffer/>
         </div>
         </>
     )

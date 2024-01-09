@@ -169,6 +169,28 @@ export default function Navbar({ theme }) {
                       Career Services
                     </NavLink>
                   </li>
+                  <li className="nav-item">
+
+
+                    <NavLink
+                      className={`nav-link`}
+                      aria-current="page" // CareerServices
+                      to="/Services"
+
+                      onClick={handleLinkClick}
+                      style={({ isActive }) => {
+                        return {
+                          color: isActive
+                            ? theme === 'light'
+                              ? '#f24b74'
+                              : '#fff'
+                            : '',
+                        };
+                      }}
+                    >
+                      Our Services
+                    </NavLink>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LiveCodeEditor from '../codeEditor/LiveCodeEditor';
 
 
+
 const CareerServices = ({ img, theme, toggleMode }) => {
 
   const [loading, setLoading] = useState(false); // Added state for loader
@@ -281,7 +282,9 @@ const CareerServices = ({ img, theme, toggleMode }) => {
         <div className="code-pannel-outer">
           <LiveCodeEditor/>
           </div>
-
+          <div className="service-slider">
+            
+          </div>
           
       </div>
     </>

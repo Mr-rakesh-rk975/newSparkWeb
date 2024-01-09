@@ -17,6 +17,7 @@ import moon from './components/images/moon.png'
 import Home from './components/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
+import Service from './components/Service/Service';
 
  
  
@@ -92,6 +93,7 @@ function App() {
          <Route path='*' element={<ErrorPage toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='/career-services' element={<CareerServices toggleMode={toggleMode} img={img} theme={theme}/>}/>
          <Route path='/our-location' element={<LeafletMapComponent toggleMode={toggleMode} img={img} theme={theme}/>}/>
+         <Route path='/Services' element={<Service toggleMode={toggleMode} img={img} theme={theme}/>}/>
          </Routes>
          </BrowserRouter> 
          

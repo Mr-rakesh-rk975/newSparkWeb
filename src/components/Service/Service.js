@@ -10,8 +10,7 @@ function Service({ img, theme, toggleMode }) {
     return (
 
         <>
-        <div className="services-outer">
-        <div className='btn-outer'>
+         <div className='btn-outer bg-btn'>
             <div className='btn-inner'>
               <div className='both-botton'>
                 <img src={img} alt='sun&moon' onClick={toggleMode} />
@@ -21,6 +20,8 @@ function Service({ img, theme, toggleMode }) {
               </div>
             </div>
           </div>
+        <div className="services-outer">
+       
             <div className="page-sections">
             <ServiceCardHover/>
             <ServiceRingHover/>

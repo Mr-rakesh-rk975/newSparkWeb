@@ -1,4 +1,11 @@
 .page-sections {
     background-color: #0074A7;
-    position: relative;
+    position: sticky;
+}
+
+@media (max-width: 649px) {
+    .bg-btn{
+        position: absolute;
+         right: 0;
+    }
 }

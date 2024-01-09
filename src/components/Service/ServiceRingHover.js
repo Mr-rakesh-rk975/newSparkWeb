@@ -19,9 +19,9 @@ export default function ServiceRingHover() {
                   <ul className='circle-container'>
                     {Array(8).fill().map((_, index) => (
                       <li key={index} data-id={index} className={activeService === index ? 'active' : ''} onMouseEnter={() => handleCircleHover(index)}>
-                        <a href='/' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                      <span className='icon-ring' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
                           <img src={require(`../images/icon-${index +1}.png`)} alt='logo' style={{width: '50px', height: '50px'}} />
-                        </a>
+                          </span> 
                       </li>
                     ))}
                   </ul>

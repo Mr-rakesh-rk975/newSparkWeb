@@ -99,7 +99,7 @@
         transform: rotate(315deg) translate(9.5em) rotate(-315deg);
       }
     }
-    a {
+    span.icon-ring{
       display: block;
       border-radius: 50%;
       box-shadow: 0 0 0 2px #70D6FE;
@@ -201,4 +201,21 @@
     .circle-container {transform:scale(0.5)}
   }
   
+  @media screen and (max-width: 768px) {
+    .circle-container {
+      text-align: center; /* Center the row */
+      border: none;
+    }
+    .circle-container:before{
+      content: "";
+   
+    }
+    .circle-container > * {
+      display:contents; /* Arrange spans horizontally */
+      margin: 0 10px; /* Add spacing between images (adjust as needed) */
+      transform: none !important; /* Override any existing transforms */
+     
+    }
+  }
+ 
   

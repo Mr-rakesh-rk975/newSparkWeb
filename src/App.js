@@ -18,6 +18,7 @@ import Home from './components/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
 import Service from './components/Service/Service';
+import UserChat from './components/Chats/UserChat';
 
  
  
@@ -96,7 +97,7 @@ function App() {
          <Route path='/Services' element={<Service toggleMode={toggleMode} img={img} theme={theme}/>}/>
          </Routes>
          </BrowserRouter> 
-         
+         <UserChat/>
         <Footer theme={theme} toggleMode={toggleMode} /> 
         
         

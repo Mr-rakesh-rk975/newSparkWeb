@@ -1,5 +1,6 @@
 import React from 'react';
 import '../DashBoard/Dashboard.css'
+import AdminChat from '../Chat/AdminChat';
 
 function Dashboard() {
   return (
@@ -18,7 +19,7 @@ function Dashboard() {
       <li><a href="#comments">comments</a></li>
       <li><a href="#widgets">widgets</a></li>
       <li><a href="#plugins">plugins</a></li>
-      <li><a href="#users">users</a></li>
+      <li><a href="#users">Messages</a></li>
       <li><a href="#tools">tools</a></li>
       <li><a href="#settings">settings</a></li>
     </ul>
@@ -88,7 +89,9 @@ function Dashboard() {
          <h2 className="header">plugins</h2>
        </div>
        <div id="users">
-         <h2 className="header">users</h2>
+         <div className="header">
+          <AdminChat/>
+         </div>
        </div>
        <div id="tools">
          <h2 className="header">tools</h2>
@@ -98,8 +101,8 @@ function Dashboard() {
        </div>
      </div>
      <ul className="statusbar">
-       <li><a href="/">Messagwe</a></li>
-       <li><a href="/">Status</a></li>
+       <li><a href="/">Link</a></li>
+       <li><a href="/">Link</a></li>
        <li className="profiles-setting"><a href="/">s</a></li>
        <li className="logout"><a href="/">k</a></li>
      </ul>

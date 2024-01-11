@@ -24,7 +24,7 @@
   .image-container{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
   }
   
   /* Adjust the styling based on your design */

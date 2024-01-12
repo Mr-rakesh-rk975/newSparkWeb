@@ -127,7 +127,10 @@
     flex-wrap: nowrap !important;
 }
 
-
+.chat-i-outer.user-sent {
+  display: flex;
+  flex-direction: row-reverse;
+}
   .chat-box-toggle {
     float:right;
     margin-right:15px;
@@ -270,10 +273,7 @@
 
   }
 
-  .chat-i-outer.user-sent {
-    display: flex;
-    flex-direction: row-reverse;
-}
+ 
   .chat-msg {
     clear:both;    
   }

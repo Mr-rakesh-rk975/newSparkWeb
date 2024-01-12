@@ -38,14 +38,14 @@ export default function UserChat() {
     })
 
     const sendMessage = async () => {
-        try {
-            await socket.emit('send_message', inputFields);
-            console.log(inputFields);
-            setMessageList([...messageList, inputFields]);
-        } catch (error) {
-            console.error('Error sending message:', error);
-        }
-    };
+      try {
+          const userMessage = { ...inputFields, sentByAdmin: true };
+          await socket.emit('send_message', userMessage);
+          setMessageList([...messageList, userMessage]);
+      } catch (error) {
+          console.error('Error sending message:', error);
+      }
+  };
     
 
     const generateMessage = useCallback(() => {
@@ -135,22 +135,22 @@ export default function UserChat() {
                                           <p>Start Chat</p>
                                                 <br />
                                                 {
-                                                    messageList.map((item, inedx)=>{
-                                                        return (
-                                                            <>
-                                                              <div className="chat-i-outer">
-                                                               <div className="cm-msg-text"  key={inedx} style={{display: 'flex', flexWrap: 'wrap'}}>
-                                                               <small><strong>{item.name}</strong></small>: <p>{item.message}</p>
-                                                              {item < messageList.length - 1 && <br />}
-                                                              </div>
-                                                              <div className="user-icon">
-                                                            <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
-                                                            </div>
-                                                              </div>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
+      messageList.map((item, index) => {
+        return (
+            <div className={`chat-i-outer ${item.sentByAdmin ? 'user-sent' : 'admin-received'}`} key={index}>
+                <div className="user-icon">
+                    <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
+                </div>
+                <div className="cm-msg-text" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <small><strong>{item.name}: </strong></small> <p>{item.message}</p>
+                    {index < messageList.length - 1 && <br />}
+                </div>
+            </div>
+        );
+    })
+}
+
+
                                               
                                               </>
                                         )

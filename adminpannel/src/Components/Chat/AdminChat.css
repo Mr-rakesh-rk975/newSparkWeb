@@ -250,8 +250,12 @@
         display: flex;
         gap: 10px;
         flex-wrap: nowrap !important;
-        flex-direction: row-reverse;
     }
+
+    .chat-i-outer.user-sent {
+        display: flex;
+        flex-direction: row-reverse;
+      }
     .cm-msg-text {
         background: white;
         padding: 10px 15px 10px 15px;

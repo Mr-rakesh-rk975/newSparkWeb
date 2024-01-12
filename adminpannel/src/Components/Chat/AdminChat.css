@@ -111,7 +111,7 @@
       display:none;
       background: #efefef;
       position:fixed;
-      right:30px;
+      right:40px;
       bottom:50px;  
       width:350px;
       max-width: 85vw;
@@ -246,17 +246,25 @@
       float:right;
       width:15%;
     }
-    .cm-msg-text {
-      background:white;
-      padding:10px 15px 10px 15px;  
-      color:#666;
-      max-width:75%;
-      float:left;
-      margin-left:10px; 
-      position:relative;
-      margin-bottom:20px;
-      border-radius:30px;
+    .chat-i-outer {
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap !important;
+        flex-direction: row-reverse;
     }
+    .cm-msg-text {
+        background: white;
+        padding: 10px 15px 10px 15px;
+        color: #666;
+        width: auto;
+        margin-left: 10px;
+        position: relative;
+        margin-bottom: 20px;
+        border-radius: 30px;
+        overflow: hidden;
+        text-wrap: wrap;
+        word-break: break-word;
+      }
     .chat-msg {
       clear:both;    
     }

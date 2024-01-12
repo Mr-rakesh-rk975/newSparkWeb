@@ -138,10 +138,14 @@ export default function UserChat() {
                                                     messageList.map((item, inedx)=>{
                                                         return (
                                                             <>
-                                                              <div className="cm-msg-text"  key={inedx} style={{display: 'flex', flexWrap: 'wrap'}}>
-                                                              <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '50px', height: '50px' }} alt="close" /></i>
-                                                              <strong><small>{item.name}</small></strong>: <p>{item.message}</p>
+                                                              <div className="chat-i-outer">
+                                                               <div className="cm-msg-text"  key={inedx} style={{display: 'flex', flexWrap: 'wrap'}}>
+                                                               <small><strong>{item.name}</strong></small>: <p>{item.message}</p>
                                                               {item < messageList.length - 1 && <br />}
+                                                              </div>
+                                                              <div className="user-icon">
+                                                            <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
+                                                            </div>
                                                               </div>
                                                             </>
                                                         )

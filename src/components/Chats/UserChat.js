@@ -52,13 +52,13 @@ export default function UserChat() {
 
     }, []);
 
-    const handleButtonClick = useCallback((value) => {
-        generateMessage(value, 'self');
-    }, [generateMessage]);
+    // const handleButtonClick = useCallback((value) => {
+    //     generateMessage(value, 'self');
+    // }, [generateMessage]);
 
-    const generateButtonMessage = useCallback(() => {
+    // const generateButtonMessage = useCallback(() => {
 
-    }, []);
+    // }, []);
 
     const handleChatCircleClick = useCallback(() => {
         document.getElementById('chat-circle').style.display = 'none';
@@ -77,7 +77,7 @@ export default function UserChat() {
             event.preventDefault();
 
             setTimeout(() => {
-                generateButtonMessage('hello');
+              
             }, 1000);
         });
 
@@ -86,11 +86,10 @@ export default function UserChat() {
         document.querySelector('.chat-box-toggle').addEventListener('click', handleBoxToggleClick);
 
         return () => {
-            document.getElementById('chat-submit').removeEventListener('click', handleButtonClick);
             document.getElementById('chat-circle').removeEventListener('click', handleChatCircleClick);
             document.querySelector('.chat-box-toggle').removeEventListener('click', handleBoxToggleClick);
         };
-    }, [handleButtonClick, generateButtonMessage, generateMessage, handleChatCircleClick, handleBoxToggleClick]);
+    }, [  generateMessage, handleChatCircleClick, handleBoxToggleClick]);
 
     return (
         <>
@@ -138,10 +137,15 @@ export default function UserChat() {
                                                     messageList.map((item, inedx)=>{
                                                         return (
                                                             <>
+                                                            <div className="chat-i-outer">
+                                                            <div className="user-icon">
+                                                            <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
+                                                            </div>
                                                                <div className="cm-msg-text"  key={inedx} style={{display: 'flex', flexWrap: 'wrap'}}>
-                                                               <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '50px', height: '50px' }} alt="close" /></i>
-                                                               <strong><small>{item.name}</small></strong>: <p>{item.message}</p>
+                                                               <small><strong>{item.name}</strong></small>: <p>{item.message}</p>
                                                               {item < messageList.length - 1 && <br />}
+                                                              </div>
+                                                            
                                                               </div>
                                                             </>
                                                         )
@@ -154,14 +158,14 @@ export default function UserChat() {
 
                                 </div>
                                 <div className="cm-msg-button">
-                                    <ul>
+                                    {/* <ul>
                                         <li className="button">
                                             <button type="button" className="btn btn-primary chat-btn" onClick={() => handleButtonClick()}>
 
                                             </button>
                                         </li>
 
-                                    </ul>
+                                    </ul> */}
                                 </div>
 
                             </div>

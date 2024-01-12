@@ -31,22 +31,22 @@ export default function UserChat() {
         console.log(inputFields)
     }
 
-    useEffect(()=>{
-        socket.on('receive_message',(data)=>{
+    useEffect(() => {
+        socket.on('receive_message', (data) => {
             setMessageList([...messageList, data])
         })
     })
 
     const sendMessage = async () => {
         try {
-            await socket.emit('send_message', inputFields);
-            console.log(inputFields);
-            setMessageList([...messageList, inputFields]);
+            const userMessage = { ...inputFields, sentByUser: true };
+            await socket.emit('send_message', userMessage);
+            setMessageList([...messageList, userMessage]);
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
-    
+
 
     const generateMessage = useCallback(() => {
 
@@ -77,7 +77,7 @@ export default function UserChat() {
             event.preventDefault();
 
             setTimeout(() => {
-              
+
             }, 1000);
         });
 
@@ -89,7 +89,7 @@ export default function UserChat() {
             document.getElementById('chat-circle').removeEventListener('click', handleChatCircleClick);
             document.querySelector('.chat-box-toggle').removeEventListener('click', handleBoxToggleClick);
         };
-    }, [  generateMessage, handleChatCircleClick, handleBoxToggleClick]);
+    }, [generateMessage, handleChatCircleClick, handleBoxToggleClick]);
 
     return (
         <>
@@ -122,7 +122,7 @@ export default function UserChat() {
                                 </span>
                                 <div className="Chats-here">
                                     {
-                                       !isChatting ? (
+                                        !isChatting ? (
                                             <>
                                                 <input type="text" placeholder="Enter name" name="name" onChange={inputHandler} />
                                                 <input type="text" placeholder="Enter room" name="room" onChange={inputHandler} />
@@ -131,28 +131,26 @@ export default function UserChat() {
                                             </>
                                         ) : (
                                             <>
-                                            <p>Start Chat</p>
-                                                  <br />
+                                                <p>Start Chat</p>
+                                                <br />
                                                 {
-                                                    messageList.map((item, inedx)=>{
-                                                        return (
-                                                            <>
-                                                            <div className="chat-i-outer">
-                                                            <div className="user-icon">
-                                                            <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
-                                                            </div>
-                                                               <div className="cm-msg-text"  key={inedx} style={{display: 'flex', flexWrap: 'wrap'}}>
-                                                               <small><strong>{item.name}</strong></small>: <p>{item.message}</p>
-                                                              {item < messageList.length - 1 && <br />}
-                                                              </div>
-                                                            
-                                                              </div>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                              
-                                              </>
+    messageList.map((item, index) => {
+        return (
+            <div className={`chat-i-outer ${item.sentByUser ? 'user-sent' : 'admin-received'}`} key={index}>
+                <div className="user-icon">
+                    <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
+                </div>
+                <div className="cm-msg-text" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <small><strong>{item.name}: </strong></small> <p>{item.message}</p>
+                    {index < messageList.length - 1 && <br />}
+                </div>
+            </div>
+        );
+    })
+}
+
+
+                                            </>
                                         )
                                     }
 
@@ -173,7 +171,7 @@ export default function UserChat() {
                     </div>
                     <div className="chat-input">
                         <form>
-                            <input type="text" id="chat-input" placeholder="Send a message..." name='message' onChange={inputHandler}/>
+                            <input type="text" id="chat-input" placeholder="Send a message..." name='message' onChange={inputHandler} />
                             <button type="submit" style={{ display: 'flex', alignItems: 'center' }} className="chat-submit" id="chat-submit" onClick={sendMessage}>
                                 <i className="material-icons"><img src={require('../images/send-message.png')} style={{ width: '25px', height: '25px' }} alt="sentMsg" /></i>
                             </button>

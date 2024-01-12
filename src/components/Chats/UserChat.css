@@ -125,7 +125,6 @@
     display: flex;
     gap: 10px;
     flex-wrap: nowrap !important;
-    flex-direction: row-reverse;
 }
 
 
@@ -267,7 +266,14 @@
     overflow: hidden;
     text-wrap: wrap;
     word-break: break-word;
+    flex-direction: column;
+
   }
+
+  .chat-i-outer.user-sent {
+    display: flex;
+    flex-direction: row-reverse;
+}
   .chat-msg {
     clear:both;    
   }

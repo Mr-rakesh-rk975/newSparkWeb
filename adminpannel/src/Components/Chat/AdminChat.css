@@ -264,6 +264,7 @@
         overflow: hidden;
         text-wrap: wrap;
         word-break: break-word;
+        flex-direction: column;
       }
     .chat-msg {
       clear:both;    

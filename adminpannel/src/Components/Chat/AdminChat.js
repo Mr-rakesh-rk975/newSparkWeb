@@ -42,6 +42,11 @@ export default function UserChat() {
           const userMessage = { ...inputFields, sentByAdmin: true };
           await socket.emit('send_message', userMessage);
           setMessageList([...messageList, userMessage]);
+          setInputFields({
+            name: '',
+            room: '',
+            message: ''
+        });
       } catch (error) {
           console.error('Error sending message:', error);
       }

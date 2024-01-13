@@ -5,6 +5,8 @@ const socketIO = require('socket.io');
 const allUsers = require('./routes/userRoutes.js');
 const careerPostUsers = require('./routes/CareerRouter.js');
 const userModel = require('./model/ContactModel.js');
+const ChatDBRouter = require('./routes/ChatDBRouter.js');
+
 const cors = require('cors');
 app.use(express.json());
 
@@ -18,6 +20,8 @@ app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http:
 // Define routes
 app.use('/userinformation', allUsers.router);
 app.use('/career', careerPostUsers.router);
+app.use('/chat-db', ChatDBRouter);
+
 
 // Handle user POST request
 app.post('/user', async (req, resp) => {

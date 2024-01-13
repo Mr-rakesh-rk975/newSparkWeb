@@ -42,10 +42,38 @@ export default function UserChat() {
             const userMessage = { ...inputFields, sentByUser: true };
             await socket.emit('send_message', userMessage);
             setMessageList([...messageList, userMessage]);
+            setInputFields({
+                name: '',
+                room: '',
+                message: ''
+            });
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
+
+    // const sendMessage = async () => {
+    //     try {
+    //         const userMessage = { ...inputFields, sentByUser: true };
+    //   // Emit the message to the socket
+    //   await socket.emit('send_message', userMessage);
+    //   setMessageList([...messageList, userMessage]);
+    //         // Store the message in the database
+    //         await fetch('http://localhost:9200/chat-db/store-message', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(userMessage),
+    //         });
+    
+          
+    //     } catch (error) {
+    //         console.error('Error sending message:', error);
+    //     }
+    // };
+
+
 
 
     const generateMessage = useCallback(() => {

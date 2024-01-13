@@ -38,20 +38,7 @@ export default function UserChat() {
         })
     })
 
-    // const sendMessage = async () => {
-    //     try {
-    //         const userMessage = { ...inputFields, sentByUser: true };
-    //         await socket.emit('send_message', userMessage);
-    //         setMessageList([...messageList, userMessage]);
-    //         if (messageInputRef.current) {
-    //             messageInputRef.current.value = '';
-    //         }
-    //     } catch (error) {
-    //         console.error('Error sending message:', error);
-    //     }
-       
-    // };
-
+ 
     const sendMessage = async () => {
         try {
             const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

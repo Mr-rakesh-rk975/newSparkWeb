@@ -38,19 +38,6 @@ export default function UserChat() {
         })
     })
 
-//     const sendMessage = async () => {
-//       try {
-//           const userMessage = { ...inputFields, sentByAdmin: true };
-//           await socket.emit('send_message', userMessage);
-//           setMessageList([...messageList, userMessage]);
-//           if (messageInputRef.current) {
-//             messageInputRef.current.value = '';
-//         }
-//       } catch (error) {
-//           console.error('Error sending message:', error);
-//       }
-     
-//   };
 
 const sendMessage = async () => {
     try {

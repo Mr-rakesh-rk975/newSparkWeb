@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Chat/AdminChat.css';
 import chatBoxImg from '../images/speech-bubble.png';
 import socket from '../../scocketIoCo'
@@ -7,6 +7,7 @@ import socket from '../../scocketIoCo'
 
 export default function UserChat() {
 
+    const messageInputRef = useRef(null);
 
     const [isChatting, setChatting] = useState(false)
     const [messageList, setMessageList] = useState([])
@@ -42,14 +43,13 @@ export default function UserChat() {
           const userMessage = { ...inputFields, sentByAdmin: true };
           await socket.emit('send_message', userMessage);
           setMessageList([...messageList, userMessage]);
-          setInputFields({
-            name: '',
-            room: '',
-            message: ''
-        });
+          if (messageInputRef.current) {
+            messageInputRef.current.value = '';
+        }
       } catch (error) {
           console.error('Error sending message:', error);
       }
+     
   };
     
 
@@ -178,7 +178,7 @@ export default function UserChat() {
                     </div>
                     <div className="chat-input">
                         <form>
-                            <input type="text" id="chat-input" placeholder="Send a message..." name='message' onChange={inputHandler}/>
+                            <input type="text" id="chat-input" placeholder="Send a message..." name='message' onChange={inputHandler}   ref={messageInputRef} />
                             <button type="submit" style={{ display: 'flex', alignItems: 'center' }} className="chat-submit" id="chat-submit" onClick={sendMessage}>
                                 <i className="material-icons"><img src={require('../images/send-message.png')} style={{ width: '25px', height: '25px' }} alt="sentMsg" /></i>
                             </button>

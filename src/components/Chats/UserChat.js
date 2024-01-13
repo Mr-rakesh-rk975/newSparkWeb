@@ -38,9 +38,24 @@ export default function UserChat() {
         })
     })
 
+    // const sendMessage = async () => {
+    //     try {
+    //         const userMessage = { ...inputFields, sentByUser: true };
+    //         await socket.emit('send_message', userMessage);
+    //         setMessageList([...messageList, userMessage]);
+    //         if (messageInputRef.current) {
+    //             messageInputRef.current.value = '';
+    //         }
+    //     } catch (error) {
+    //         console.error('Error sending message:', error);
+    //     }
+       
+    // };
+
     const sendMessage = async () => {
         try {
-            const userMessage = { ...inputFields, sentByUser: true };
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const userMessage = { ...inputFields, sentByUser: true, timestamp: currentTime };
             await socket.emit('send_message', userMessage);
             setMessageList([...messageList, userMessage]);
             if (messageInputRef.current) {
@@ -49,49 +64,11 @@ export default function UserChat() {
         } catch (error) {
             console.error('Error sending message:', error);
         }
-        setInputFields({
-            name: '',
-            room: '',
-            message: ''
-        });
     };
-
-    // const sendMessage = async () => {
-    //     try {
-    //         const userMessage = { ...inputFields, sentByUser: true };
-    //   // Emit the message to the socket
-    //   await socket.emit('send_message', userMessage);
-    //   setMessageList([...messageList, userMessage]);
-    //         // Store the message in the database
-    //         await fetch('http://localhost:9200/chat-db/store-message', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(userMessage),
-    //         });
     
-          
-    //     } catch (error) {
-    //         console.error('Error sending message:', error);
-    //     }
-    // };
 
 
-
-
-    const generateMessage = useCallback(() => {
-
-    }, []);
-
-    // const handleButtonClick = useCallback((value) => {
-    //     generateMessage(value, 'self');
-    // }, [generateMessage]);
-
-    // const generateButtonMessage = useCallback(() => {
-
-    // }, []);
-
+   
     const handleChatCircleClick = useCallback(() => {
         document.getElementById('chat-circle').style.display = 'none';
         document.querySelector('.chat-box').style.display = 'block';
@@ -121,7 +98,7 @@ export default function UserChat() {
             document.getElementById('chat-circle').removeEventListener('click', handleChatCircleClick);
             document.querySelector('.chat-box-toggle').removeEventListener('click', handleBoxToggleClick);
         };
-    }, [generateMessage, handleChatCircleClick, handleBoxToggleClick]);
+    }, [ handleChatCircleClick, handleBoxToggleClick]);
 
     return (
         <>
@@ -166,19 +143,21 @@ export default function UserChat() {
                                                 <p>Start Chat</p>
                                                 <br />
                                                 {
-    messageList.map((item, index) => {
-        return (
-            <div className={`chat-i-outer ${item.sentByUser ? 'user-sent' : 'admin-received'}`} key={index}>
-                <div className="user-icon">
-                    <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
-                </div>
-                <div className="cm-msg-text" style={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <small><strong>{item.name}: </strong></small> <p>{item.message}</p>
-                    {index < messageList.length - 1 && <br />}
-                </div>
+   messageList.map((item, index) => {
+    return (
+        <div className={`chat-i-outer ${item.sentByUser ? 'user-sent' : 'admin-received'}`} key={index}>
+            <div className="user-icon">
+                <i className="material-icons"><img src={require('../images/user.png')} style={{ width: '40px', height: '40px' }} alt="close" /></i>
             </div>
-        );
-    })
+            <div className="cm-msg-text" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <small><strong>{item.name}: </strong></small> <p>{item.message}</p>
+                <small className="timestamp">{item.timestamp}</small>
+                {index < messageList.length - 1 && <br />}
+            </div>
+        </div>
+    );
+})
+
 }
 
 
@@ -190,7 +169,7 @@ export default function UserChat() {
                                 <div className="cm-msg-button">
                                     {/* <ul>
                                         <li className="button">
-                                            <button type="button" className="btn btn-primary chat-btn" onClick={() => handleButtonClick()}>
+                                            <button type="button" className="btn btn-primary chat-btn">
 
                                             </button>
                                         </li>

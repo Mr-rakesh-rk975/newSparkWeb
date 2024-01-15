@@ -331,8 +331,18 @@ nav#navbar-outer {
 
 .hero-section-outer {
     padding: 20px 10px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
-
+.video-background {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .hero-section-first-div {
     margin-bottom: 30px;
 }

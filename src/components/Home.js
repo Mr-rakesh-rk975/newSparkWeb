@@ -1,7 +1,7 @@
   import MySong from './MySong';
 import ContactForm from './ContactForm';
 import Marquee from 'react-fast-marquee';
-import BGVideo from '../components/videos/dsk.ccf9a451.mp4'
+// import BGVideo from '../components/videos/dsk.ccf9a451.mp4'
   function Home({toggleMode,img,theme}) {
 
  
@@ -24,8 +24,8 @@ import BGVideo from '../components/videos/dsk.ccf9a451.mp4'
         </div>
          
             <div className={`hero-section-outer`}>
-            <video className="video-background" autoPlay loop muted playsInline>
-        <source src={BGVideo} type="video/mp4" />
+            {/* <video className="video-background" autoPlay loop muted playsInline>
+        <source src={BGVideo} type="video/mp4" /> */}
               <div className='hero-section-inner'>
                 <div className="hero-section-first-div">
                   <p style={{color:theme==='light'?'#000':'#fff'}}>hii user</p>
@@ -36,7 +36,7 @@ import BGVideo from '../components/videos/dsk.ccf9a451.mp4'
                   </h1>
                 </div>
               </div>
-              </video>
+              {/* </video> */}
             </div>
 
            
